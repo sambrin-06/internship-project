@@ -1,0 +1,28 @@
+# DEV ONLY: Runs only infrastructure services (MySQL, Redis, MailHog)
+# Use this for faster development — run backend & frontend natively
+# Usage: docker-compose -f docker-compose.dev.yml up
+
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=ict_db
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  mysql-data:

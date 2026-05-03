@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Deadline Reminder</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 600px; margin: auto; border-top: 4px solid #1B4F8A; }
+        .header { font-size: 24px; color: #1B4F8A; margin-bottom: 20px; }
+        .content { font-size: 16px; color: #333333; line-height: 1.5; }
+        .footer { margin-top: 30px; font-size: 14px; color: #888888; text-align: center; }
+        .highlight { font-weight: bold; color: #d9534f; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Action Required: Upcoming Deadline</div>
+        <div class="content">
+            <p>Hello <span th:text="${assigneeName}">User</span>,</p>
+            <p>This is a reminder that the internal control test <strong th:text="${controlTitle}">Control Title</strong> assigned to you is approaching its deadline.</p>
+            <p><strong>Deadline:</strong> <span class="highlight" th:text="${deadline}">2026-05-05</span></p>
+            <p><strong>Risk Level:</strong> <span th:text="${riskLevel}">HIGH</span></p>
+            <p>Please log in to the Internal Controls Testing application to update the status.</p>
+        </div>
+        <div class="footer">
+            &copy; 2026 Internal Controls Testing. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

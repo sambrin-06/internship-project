@@ -9,29 +9,35 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
+@Table(name = "controls")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class Control {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String username;
+    @Column(nullable = false)
+    private String title;
 
-    @Column(unique = true, nullable = false)
-    private String email;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
     @Column(nullable = false)
-    private String password;
+    private String status; // e.g., "PENDING", "TESTED", "FAILED", "PASSED"
 
     @Column(nullable = false)
-    private String role;
+    private String riskLevel; // e.g., "LOW", "MEDIUM", "HIGH"
+
+    private LocalDateTime deadline;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assignee_id")
+    private User assignee;
 
     @CreatedDate
     @Column(updatable = false)
