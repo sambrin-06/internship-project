@@ -21,6 +21,7 @@ uvicorn main:app --reload
 ## Run Frontend
 cd frontend
 npm start
+npm run dev
 
 ## API Endpoint
 POST /ai
